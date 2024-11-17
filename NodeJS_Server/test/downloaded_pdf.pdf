@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko"
+	>
+	<head>
+		<title>식품의약품안전처 의약품통합정보시스템 PDF보안</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" href="//staticnedrug.mfds.go.kr/resources/css/import.css?v=20200120" />
+		<script type="text/javascript" src="//staticnedrug.mfds.go.kr/static/lib/jquery/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="//staticnedrug.mfds.go.kr/static/lib/jquery-ui/jquery-ui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="//staticnedrug.mfds.go.kr/resources/js/front_script.js"></script>
+		<script type="text/javascript" src="//staticnedrug.mfds.go.kr/static/lib/colResizeable/colResizable-1.6.min.js"></script>
+		<script type="text/javascript" src="//staticnedrug.mfds.go.kr/resources/js/common-pbp.js"></script>
+		<script type="text/javascript" src="//staticnedrug.mfds.go.kr/static/lib/bootstrap-3.3.7/js/bootstrap.js"></script>
+		<script type="text/javascript" src="//staticnedrug.mfds.go.kr/static/lib/bootbox.js"></script>
+		<script type="text/javascript" src="//staticnedrug.mfds.go.kr/static/lib/jquery/jquery.maskedinput.min.js"></script>
+		<link rel="stylesheet" href="/static/lib/bootstrap-3.3.7/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="/static/css/int_import.css?v=20200120"/>
+
+	<meta http-equiv="Expires" content="-1">
+
+	<meta http-equiv="Pragma" content="no-Cache">
+
+	<meta http-equiv="Cache-Control" content="No-Cache">
+
+	<script>
+    function reflashCaptcha(target){
+      var rand = getSeedRandom();
+      $(target).attr("src", "/captcha/select?rand="+rand);
+    }
+    function audioCaptcha(){
+      var url='/captcha/audio';
+      var rand = getSeedRandom();
+      $.ajax({
+        url : url,
+        type : 'GET',
+        dataType : 'text',
+        data : 'rand='+rand,
+        async : false,
+        success : function(res){
+          var userAgent = navigator.userAgent;
+          var soundUrl = url;
+          if(userAgent.indexOf('Trident') > -1 || userAgent.indexOf('MSIE') > -1 ){
+            winPlayer(soundUrl);
+          }else if(!!document.createElement('audio').canPlayType){
+            try{
+              new Audio(soundUrl).play();
+            }catch(e){
+              winPlayer(soundUrl);
+            }
+          }else{
+            window.open(soundUrl,'','width=1,height=1');
+          }
+        },
+        error : function(){
+
+        }
+      });
+    }
+
+    function getSeedRandom(){
+      var seed = new Date().getTime();
+      seed = (seed * 9301 + 49297)%233280;
+      return seed/(233280.0);
+    }
+    function winPlayer(objUrl){
+      var rand = getSeedRandom();
+      objUrl = objUrl+"?rand="+rand;
+      $('#captchaAudio').html('<bgsound src="'+objUrl+'">');
+    }
+
+    function getCookie(name){
+      var parts = document.cookie.split(name + "=");
+      if(parts.length == 2) return parts.pop().split(":").shift();
+    }
+    function expireCookie(name){
+      document.cookie = encodeURIComponent(name)+"=delete; expires=" + new Date(0).toUTCString();
+    }
+    function fn_vchk() {
+      if ($("#captchaValue").val() === "") {
+        alert("보안문자를 입력해주세요.");
+        $("#captchaValue").focus();
+        return false;
+      }
+      $('#resultP').text("");
+      $('#loading-circle').show();
+      $('#modal-pop').modal({show: true});
+
+
+      downloadTimer = setInterval(function(){
+        var token = getCookie("fileDownloadToken");
+        if(token.indexOf("True") >-1 ){
+          expireCookie("fileDownloadToken");
+          $("#captchaValue").val("");
+          reflashCaptcha($('#captcha'))
+          $('#modal-pop').modal('hide');
+          $('#loading-circle').hide();
+          clearInterval(downloadTimer);
+        }
+      },1000);
+    }
+
+  </script>
+
+	<style>
+    .captcha_div{ margin: 0 auto;
+
+                }
+
+    .container{ text-align: center;
+                align-items: center;
+                height: 100%;
+                width: 100%;
+                display: flex;
+              }
+  </style>
+
+	</head>
+	<body>
+        <body>
+  <div class = "container">
+    <div id="modal-pop" class="modal" style="display: none;">
+    </div>
+    <div class = "captcha_div">
+      <div>
+        <h1>
+          <a href ="/">
+           <img src="/resources/images/layout/img_header_logo.gif" alt="식품의약품안전처 의약품통합정보시스템" />
+          </a>
+        </h1>
+      </div>
+      <form id="frm" method="post" enctype="multipart/form-data" onsubmit="return fn_vchk()">
+      <div>
+        <img src="/captcha/select" id="captcha" name="captcha" style="cursor:pointer" onclick="reflashCaptcha(this)" alt="자동 가입 방지 CAPTCHA">
+        <input type="button" value="새로고침" class="btn_list btn_base btn_point1" onclick="reflashCaptcha($('#captcha'));">&nbsp;<input type="button" value="음성듣기" class="btn_list btn_base btn_point1" onclick="audioCaptcha($('#captcha'));">
+        <div id="captchaAudio" style="display:none"></div>
+        <input type="hidden" id="deleteYn" name="deleteYn" value="N" />
+        <input type="hidden" id="secuTrUseYn"  name="secuTrUseYn" value="Y"/>
+        <br/>
+        <input type="text" id="captchaValue" style = "width:100%;" name="captchaValue" title ="보안문자확인"/>
+        <p style = "margin-top:10px" class = "red_cr" id = "resultP">보안문자를 입력해주세요.</p>
+      </div>
+      <div>
+        <input type ="submit" class = "btn_list btn_base btn_point3"/>
+      </div>
+      </form>
+      <div id="loading-circle" style = "display:none">
+        <img src="//staticnedrug.mfds.go.kr/resources/images/bx_loader.gif" alt="로딩 이미지 입니다." />
+      </div>
+    </div>
+  </div>
+</body>
+        <div/>
+	</body>
+</html>
