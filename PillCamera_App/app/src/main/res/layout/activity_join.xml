@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
+    
+    <ImageButton
+            android:id="@+id/backbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.044"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.023"
+            app:srcCompat="@drawable/abc_vector_test"
+            tools:layout_constraintBottom_creator="1"
+            tools:layout_constraintLeft_creator="1"
+            tools:layout_constraintRight_creator="1"/>
+
+    <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="70dp"
+            android:text="회원가입"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/join_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <EditText
+            android:id="@+id/join_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="25dp"
+            android:ems="13"
+            android:hint="이름"
+            android:inputType="textPersonName"
+            android:privateImeOptions="defaultInputmode=korean"
+            app:layout_constraintBottom_toTopOf="@+id/join_id"
+            app:layout_constraintEnd_toEndOf="@+id/checkid_button"/>
+
+    <EditText
+            android:id="@+id/join_id"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="24dp"
+            android:ems="13"
+            android:hint="아이디 (4~12)"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/join_pw"
+            app:layout_constraintEnd_toStartOf="@+id/checkid_button"
+            app:layout_constraintStart_toStartOf="@+id/join_name"/>
+
+    <EditText
+            android:id="@+id/join_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:ems="13"
+            android:hint="비밀번호 (8~30 특수문자사용)"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/join_pw2"
+            app:layout_constraintStart_toStartOf="@+id/join_id"/>
+
+    <EditText
+            android:id="@+id/join_pw2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="267dp"
+            android:ems="13"
+            android:hint="비밀번호 확인"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/join_pw"/>
+
+
+
+    <Button
+            android:id="@+id/checkid_button"
+            style="@style/defaultButton"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="97dp"
+            android:layout_marginRight="97dp"
+            android:text="중복체크"
+            app:layout_constraintBaseline_toBaselineOf="@+id/join_id"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+            android:id="@+id/cancel_button"
+            style="@style/defaultButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="71dp"
+            android:text="취소"
+            app:layout_constraintStart_toEndOf="@+id/join_button"
+            app:layout_constraintTop_toBottomOf="@+id/join_pw2"/>
+
+    <Button
+            android:id="@+id/join_button"
+            style="@style/defaultButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="96dp"
+            android:text="가입"
+            app:layout_constraintBaseline_toBaselineOf="@+id/cancel_button"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
