@@ -22,11 +22,11 @@
 
 
 ## 🛠 사용 기술
-## 📱 프론트엔드 (안드로이드 앱)
+## 📱 안드로이드 앱
 - Android Studio(Java): 애플리케이션 UI 및 기능 구현
 - Retrofit 라이브러리: RESTful API와의 데이터 통신
   
-## 🌐 백엔드 (서버)
+## 🌐 서버
 - Node.js (Express 프레임워크): 서버 및 API 구현
 - MySQL: 사용자 및 의약품 데이터 관리
 - Google Cloud Vision API: OCR을 활용한 문자 데이터 추출
