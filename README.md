@@ -38,6 +38,6 @@
 - OCR 및 이미지 분석 기술을 활용한 의료 분야 AI 응용 사례
 
 ## 🔗 참고 자료
-[Google Cloud Vision API](https://cloud.google.com/vision/docs/ocr)
-[공공데이터-식약처](https://nedrug.mfds.go.kr/pbp/CCBGA01/getItem?totalPages=4&limit=10&page=2&&openDataInfoSeq=11)
+- [Google Cloud Vision API](https://cloud.google.com/vision/docs/ocr)
+- [공공데이터-식약처](https://nedrug.mfds.go.kr/pbp/CCBGA01/getItem?totalPages=4&limit=10&page=2&&openDataInfoSeq=11)
 
