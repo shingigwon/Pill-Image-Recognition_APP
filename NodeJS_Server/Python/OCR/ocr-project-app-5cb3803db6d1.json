@@ -2,7 +2,7 @@
   "type": "service_account",
   "project_id": "ocr-project-app",
   "private_key_id": "",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nEND PRIVATE KEY-----\n",
+  "private_key": "-----BEGIN PRIVATE KEY-----\n END PRIVATE KEY-----\n",
   "client_email": "",
   "client_id": "",
   "auth_uri": "",
